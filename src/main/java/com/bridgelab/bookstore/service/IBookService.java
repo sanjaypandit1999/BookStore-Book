@@ -1,6 +1,7 @@
 package com.bridgelab.bookstore.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgelab.bookstore.dto.BookDTO;
 import com.bridgelab.bookstore.dto.ResponseDTO;
@@ -21,5 +22,7 @@ public interface IBookService {
 	ResponseDTO changeBookQuanity(String token, long id, int quantity);
 
 	ResponseDTO changeBookPrice(String token, long id, double price);
+
+	ResponseDTO setBookLogo(String token,Long id, MultipartFile multipartFile);
 
 }

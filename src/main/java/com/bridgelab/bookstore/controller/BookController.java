@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgelab.bookstore.dto.BookDTO;
 import com.bridgelab.bookstore.dto.ResponseDTO;
@@ -68,6 +69,12 @@ public class BookController {
 	@GetMapping("/changeprice")
 	public ResponseEntity<ResponseDTO> changeBookPrice(@RequestParam String token, @RequestParam long id,  @RequestParam double price) {
 			ResponseDTO response =bookService.changeBookPrice(token, id, price);
+			return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+	}
+	
+	@PostMapping("/uploadImage/{id}")
+	public ResponseEntity<ResponseDTO> setBookLogo(@RequestParam String token,@PathVariable Long id, @RequestParam(value="File") MultipartFile multipartFile) {
+			ResponseDTO response =bookService.setBookLogo(token,id, multipartFile);
 			return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
 }
